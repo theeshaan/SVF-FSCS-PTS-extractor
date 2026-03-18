@@ -1,0 +1,64 @@
+====================================
+Variable: FunValVar ID: 4
+main
+Points-to:  5 (FunObjVar ID: 5 (base object)
+main)	 
+====================================
+Variable: ValVar ID: 7
+   %1 = alloca ptr, align 8 { "ln": 3, "fl": "input.c" }
+Points-to:  8 (StackObjVar ID: 8
+   %1 = alloca ptr, align 8 { "ln": 3, "fl": "input.c" })	 
+====================================
+Variable: ValVar ID: 10
+   %2 = alloca i32, align 4 { "ln": 3, "fl": "input.c" }
+Points-to:  11 (StackObjVar ID: 11
+   %2 = alloca i32, align 4 { "ln": 3, "fl": "input.c" })	  <-- this is the node we're interested in! 
+====================================
+Variable: FunValVar ID: 17
+llvm.dbg.declare
+Points-to:  18 (FunObjVar ID: 18 (base object)
+llvm.dbg.declare)	 
+====================================
+====================================
+====================================
+====================================
+Variable: 1
+Points-to: 
+Variable: 2
+Points-to: 
+Variable: 3
+Points-to: 
+Variable: 4
+Points-to:  5 (FunObjVar ID: 5 (base object)
+main)	 
+Variable: 5
+Points-to: 
+Variable: 6
+Points-to: 
+Variable: 7
+Points-to:  8 (StackObjVar ID: 8
+   %1 = alloca ptr, align 8 { "ln": 3, "fl": "input.c" })	 
+Variable: 8
+Points-to: 
+Variable: 9
+Points-to:  3 (DummyObjVar ID: 3)	 
+Variable: 10
+Points-to:  11 (StackObjVar ID: 11
+   %2 = alloca i32, align 4 { "ln": 3, "fl": "input.c" })	  <-- this is the node we're interested in! 
+Variable: 11
+Points-to: 
+Variable: 12
+Points-to: 
+Variable: 13
+Points-to: 
+Variable: 14
+Points-to: 
+Variable: 15
+Points-to: 
+Variable: 16
+Points-to:  3 (DummyObjVar ID: 3)	 
+Variable: 17
+Points-to:  18 (FunObjVar ID: 18 (base object)
+llvm.dbg.declare)	 
+Variable: 18
+Points-to: 

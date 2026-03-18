@@ -168,7 +168,7 @@ include_directories(SYSTEM ${Z3_INCLUDES})
 add_executable(svf-example src/svf-example.cpp)
 
 # Only link against SVF; LLVM & Z3 dependencies are resolved internally
-target_link_libraries(svf-example PRIVATE ${llvm_libs} ${SVF_LIB})
+target_link_libraries(svf-example PRIVATE ${llvm_libs} ${SVF_LIB} z3)
 
 # Set the executable example to install to the local directory (as prefix)
 install(TARGETS svf-example RUNTIME DESTINATION bin)
@@ -177,11 +177,20 @@ install(TARGETS svf-example RUNTIME DESTINATION bin)
 add_custom_command(
   TARGET svf-example
   POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_INSTALL_PREFIX}/data
+  COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/data
   COMMAND
     clang -S -c -Xclang -disable-O0-optnone -fno-discard-value-names -emit-llvm
     ${CMAKE_CURRENT_SOURCE_DIR}/src/input.c -o
-    ${CMAKE_INSTALL_PREFIX}/data/input.ll
-  COMMAND opt -S -p=mem2reg ${CMAKE_INSTALL_PREFIX}/data/input.ll -o
-          ${CMAKE_INSTALL_PREFIX}/data/input.ll
+    ${CMAKE_BINARY_DIR}/data/input.ll
+  COMMAND opt -S -p=mem2reg ${CMAKE_BINARY_DIR}/data/input.ll -o
+          ${CMAKE_BINARY_DIR}/data/input.ll
   COMMENT "→ generating LLVM IR for src/input.c → data/input.ll")
+
+# E: I've added this so that extapi.bc is automatically placed where it is expected after every rebuild
+add_custom_command(TARGET svf-example POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory
+        /home/eshaan/btp_work/SVF-example/build/node_modules/SVF/lib
+    COMMAND ${CMAKE_COMMAND} -E copy
+        ../../SVF/Debug-build/bin/extapi.bc
+        /home/eshaan/btp_work/SVF-example/build/node_modules/SVF/lib/extapi.bc
+)
