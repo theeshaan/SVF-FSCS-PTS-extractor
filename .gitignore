@@ -1,1 +1,26 @@
-BUILD/
+# Build directories
+/build/
+/build/*
+
+# CMake files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Binaries
+*.out
+*.exe
+*.o
+*.so
+*.a
+
+# Node modules
+node_modules/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
