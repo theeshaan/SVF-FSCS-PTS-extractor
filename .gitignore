@@ -24,3 +24,6 @@ node_modules/
 # OS files
 .DS_Store
 Thumbs.db
+
+# temporary output files
+out.txt
